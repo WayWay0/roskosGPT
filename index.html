@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Local Key Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card">
+    <h1>Local Key Manager</h1>
+
+    <section class="row">
+      <label>Passphrase (used to encrypt/decrypt)</label>
+      <input id="pass" type="password" placeholder="Enter a strong passphrase" />
+      <div class="small">Passphrase isn't sent anywhere — memorize it.</div>
+      <button id="unlockBtn">Unlock / Load</button>
+      <button id="lockBtn" disabled>Lock</button>
+    </section>
+
+    <section id="manager" class="hidden">
+      <form id="addForm" class="row">
+        <input id="name" placeholder="Key name (e.g. OPENAI_API_KEY)" required />
+        <input id="value" placeholder="Key value" required />
+        <button type="submit">Add / Update</button>
+      </form>
+
+      <div class="controls row">
+        <button id="exportEncrypted">Export Encrypted Backup (.json)</button>
+        <button id="importEncrypted">Import Encrypted Backup</button>
+        <button id="exportCSV">Export CSV (plain)</button>
+        <button id="clearAll">Clear All (local)</button>
+      </div>
+
+      <h2>Your keys</h2>
+      <table id="list">
+        <thead><tr><th>Name</th><th>Value (hidden)</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="notes">
+      <strong>Notes:</strong>
+      <ul>
+        <li>Do not commit your passphrase or plain exports to git.</li>
+        <li>For production-grade secret storage, use server-side secret managers.</li>
+      </ul>
+    </section>
+  </main>
+
+  <input id="filePicker" type="file" accept=".json" style="display:none" />
+
+  <script src="app.js"></script>
+</body>
+</html>
